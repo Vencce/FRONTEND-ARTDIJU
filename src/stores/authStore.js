@@ -9,7 +9,7 @@ export const useAuthStore = defineStore('auth', () => {
   const router = useRouter()
   const toast = useToastStore()
 
-  const API_URL = 'http://127.0.0.1:8000/api/token/'
+  const API_URL = 'https://artdiju-backend.onrender.com/api/token/'
 
   async function login(username, password) {
     try {

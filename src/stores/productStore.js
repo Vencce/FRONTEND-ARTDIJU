@@ -9,7 +9,7 @@ export const useProductStore = defineStore('products', () => {
   const error = ref(null)
   const toast = useToastStore()
 
-  const API_URL = 'http://127.0.0.1:8000/api/products/'
+  const API_URL = 'https://artdiju-backend.onrender.com/api/products/'
 
   function getAuthHeader() {
     const token = localStorage.getItem('access_token')
