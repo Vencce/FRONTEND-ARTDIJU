@@ -93,19 +93,24 @@ import Logo from '@/assets/imagens/logo.png'
   position: relative;
   z-index: 2;
 }
+
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 2rem;
+    gap: 2.5rem;
+    padding: 3rem 1.5rem 2rem; /* Menos padding lateral e superior */
   }
   .social-links {
     justify-content: center;
   }
   .footer-col {
     align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 }
+
 .footer-col h3 {
   font-size: 1.1rem;
   margin-bottom: 1.2rem;
@@ -130,6 +135,8 @@ import Logo from '@/assets/imagens/logo.png'
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
+  flex-wrap: wrap; /* Permite quebrar linha em telas muito pequenas */
+  justify-content: center;
 }
 .social-icon {
   color: white;
@@ -156,11 +163,21 @@ import Logo from '@/assets/imagens/logo.png'
   color: #cbd5e1;
   text-decoration: none;
   transition: color 0.2s;
+  display: inline-block; /* Melhor área de toque */
+  padding: 2px 0;
 }
 .links-col a:hover {
   color: #5fc9f8;
   padding-left: 5px;
 }
+
+/* No mobile, removemos o efeito de padding-left no hover para não "dançar" o texto centralizado */
+@media (max-width: 768px) {
+  .links-col a:hover {
+    padding-left: 0; 
+  }
+}
+
 .contact-col .hours {
   margin-top: 1rem;
   font-size: 0.85rem;

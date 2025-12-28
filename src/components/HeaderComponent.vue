@@ -113,6 +113,12 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   margin: 0 auto;
 }
 
+@media (max-width: 640px) {
+  .header-content {
+    padding: 1rem 1.2rem; /* Menos padding lateral no mobile */
+  }
+}
+
 /* Logo */
 .logo-img {
   height: 50px;
@@ -120,6 +126,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   object-fit: contain;
   transition: transform 0.3s;
 }
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 40px; /* Logo um pouco menor em telas muito pequenas */
+  }
+}
+
 .logo-img:hover {
   transform: scale(1.05);
 }
@@ -170,6 +183,12 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   display: flex;
   align-items: center;
   gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .header-actions {
+    gap: 0.8rem; /* Ícones mais próximos no mobile */
+  }
 }
 
 .action-btn {
@@ -236,6 +255,8 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0.5rem; /* Aumenta área de clique */
+  z-index: 1001;
 }
 
 .bar {
@@ -282,6 +303,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll))
   font-weight: 500;
   border-left: 4px solid transparent;
   transition: all 0.2s;
+  font-size: 1.1rem; /* Texto maior para toque */
 }
 
 .mobile-link:hover,
