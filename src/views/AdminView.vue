@@ -354,11 +354,29 @@ const executeDelete = async () => {
   transition: all 0.2s;
   background: white;
 }
+
+@media (max-width: 600px) {
+  .search-box input {
+    width: 100%;
+  }
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
 .search-box input:focus {
   width: 300px; 
   border-color: #5fc9f8;
   box-shadow: 0 0 0 4px rgba(95, 201, 248, 0.1);
 }
+@media (max-width: 600px) {
+  .search-box input:focus {
+    width: 100%;
+  }
+}
+
 .search-icon {
   position: absolute;
   left: 12px;
@@ -392,6 +410,7 @@ const executeDelete = async () => {
 .product-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px; /* Garante que a tabela não esprema demais */
 }
 .product-table th,
 .product-table td {
@@ -570,6 +589,11 @@ const executeDelete = async () => {
   flex-direction: column;
   gap: 1.5rem;
 }
+@media (max-width: 600px) {
+  .form-content {
+    padding: 1.5rem;
+  }
+}
 
 .toggles-row {
   display: flex;
@@ -590,6 +614,7 @@ const executeDelete = async () => {
   color: #64748b;
   transition: all 0.2s;
   user-select: none;
+  min-width: 120px;
 }
 .toggle-btn.active {
   border-color: #ef4444;
@@ -615,6 +640,7 @@ const executeDelete = async () => {
 @media (max-width: 600px) {
   .form-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 .form-group.full {
@@ -671,6 +697,7 @@ textarea:focus {
   color: #64748b;
   font-weight: 500;
   background: #f8fafc;
+  text-align: center;
 }
 .custom-file-upload:hover {
   border-color: #5fc9f8;

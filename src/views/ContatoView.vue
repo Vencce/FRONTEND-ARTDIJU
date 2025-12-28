@@ -156,6 +156,14 @@ const sendMessage = () => {
   background: #fce7f3;
 }
 
+@media (max-width: 768px) {
+  .blob {
+    width: 300px;
+    height: 300px;
+    filter: blur(70px);
+  }
+}
+
 .contact-card {
   background: white;
   border-radius: 24px;
@@ -184,6 +192,12 @@ const sendMessage = () => {
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .info-side {
+    padding: 2rem;
+  }
+}
+
 .info-side::before {
   content: '';
   position: absolute;
@@ -201,6 +215,12 @@ const sendMessage = () => {
   line-height: 1.1;
   font-weight: 700;
 }
+@media (max-width: 768px) {
+  .info-side h1 {
+    font-size: 1.8rem;
+  }
+}
+
 .intro {
   color: #94a3b8;
   line-height: 1.6;
@@ -258,6 +278,12 @@ const sendMessage = () => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .form-side {
+    padding: 1.5rem; /* Padding reduzido no mobile */
+  }
 }
 
 .form-group {

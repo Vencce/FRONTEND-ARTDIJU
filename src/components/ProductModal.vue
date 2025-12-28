@@ -106,6 +106,9 @@ const handleAddBag = () => {
   border-radius: 24px; overflow: hidden; position: relative;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh; /* Garante que cabe na tela do celular */
+  display: flex;
+  flex-direction: column;
 }
 
 .top-actions {
@@ -128,12 +131,24 @@ const handleAddBag = () => {
 
 .feedback-text { font-size: 0.6rem; color: #22c55e; font-weight: 700; }
 
-.modal-content { display: grid; grid-template-columns: 1fr; min-height: 400px; }
-@media (min-width: 768px) { .modal-content { grid-template-columns: 1.2fr 1fr; } }
+.modal-content { 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  overflow-y: auto; /* Permite rolar se o conteúdo for grande */
+}
+@media (min-width: 768px) { 
+  .modal-content { grid-template-columns: 1.2fr 1fr; overflow-y: hidden; } 
+  .product-modal { height: auto; }
+}
 
 .modal-image-col { background: #f1f5f9; display: flex; align-items: center; justify-content: center; padding: 2rem; }
 .image-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
 .image-container img { max-width: 100%; max-height: 500px; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+@media (max-width: 768px) {
+  .modal-image-col { padding: 3rem 1rem 1rem; } /* Espaço para o botão fechar */
+  .image-container img { max-height: 300px; }
+}
 
 .status-badge {
   position: absolute; top: -10px; left: -10px;
@@ -145,22 +160,26 @@ const handleAddBag = () => {
 .status-badge.available { background: #22c55e; color: white; }
 
 .modal-details-col { padding: 3rem 2.5rem; display: flex; flex-direction: column; }
+@media (max-width: 768px) {
+  .modal-details-col { padding: 1.5rem; }
+}
 
 .details-header { margin-bottom: 1.5rem; }
 .category-pill { background: #e0f2fe; color: #0284c7; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; margin-bottom: 0.8rem; }
 .title { font-size: 2.2rem; color: #1e293b; line-height: 1.1; margin: 0; }
+@media (max-width: 768px) { .title { font-size: 1.8rem; } }
 
-.price-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.price-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .price-wrapper { color: #1e293b; display: flex; align-items: baseline; gap: 4px; }
 .currency { font-size: 1.2rem; font-weight: 600; }
 .value { font-size: 2rem; font-weight: 800; }
 .dimensions-pill { background: #f8fafc; border: 1px solid #e2e8f0; color: #64748b; padding: 6px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; }
 
-.description-box { margin-bottom: auto; }
+.description-box { margin-bottom: 2rem; }
 .description-box h3 { font-size: 1rem; color: #334155; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
 .description-box p { color: #64748b; line-height: 1.7; font-size: 1rem; }
 
-.modal-footer { margin-top: 2rem; }
+.modal-footer { margin-top: auto; }
 .btn-add-bag {
   width: 100%; padding: 1.2rem;
   background: #1e293b; color: white;

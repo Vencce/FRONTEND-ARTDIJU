@@ -139,6 +139,12 @@ const openModal = (product) => {
   padding: 0 2rem;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
 .hero-curved {
   position: relative;
   background-color: #f8fafc;
@@ -205,18 +211,21 @@ const openModal = (product) => {
 
 @media (max-width: 768px) {
   .hero-curved {
-    padding: 4rem 1rem 6rem;
-    border-bottom-left-radius: 50% 15%;
-    border-bottom-right-radius: 50% 15%;
+    padding: 3rem 1rem 5rem;
+    border-bottom-left-radius: 50% 10%;
+    border-bottom-right-radius: 50% 10%;
   }
   .hero-content h1 {
-    font-size: 2.2rem;
+    font-size: 2rem; /* Reduzido para mobile */
+  }
+  .hero-content p {
+    font-size: 1rem;
   }
   .blob {
     opacity: 0.4;
     filter: blur(50px);
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
 }
 
@@ -262,6 +271,7 @@ const openModal = (product) => {
   color: #64748b;
   font-weight: 600;
   transition: all 0.2s;
+  white-space: nowrap; /* Impede quebra de texto */
 }
 .category-pill:hover {
   background: #e2e8f0;
@@ -279,6 +289,13 @@ const openModal = (product) => {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2rem;
   margin-bottom: 5rem;
+}
+
+/* Ajuste para telas muito pequenas */
+@media (max-width: 400px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .product-card {

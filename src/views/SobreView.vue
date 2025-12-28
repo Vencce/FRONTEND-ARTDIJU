@@ -79,6 +79,13 @@
   margin: 0 auto;
   padding: 0 2rem;
 }
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
 .relative-z {
   position: relative;
   z-index: 10;
@@ -108,6 +115,14 @@
   animation: float 12s ease-in-out infinite alternate-reverse;
 }
 
+@media (max-width: 768px) {
+  .blob {
+    width: 300px;
+    height: 300px;
+    filter: blur(60px);
+  }
+}
+
 @keyframes float {
   0% {
     transform: translate(0, 0);
@@ -121,6 +136,12 @@
   text-align: center;
   padding: 6rem 0 4rem;
 }
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 4rem 0 3rem;
+  }
+}
+
 .hero-section h1 {
   font-size: 3rem;
   color: #1e293b;
@@ -128,12 +149,23 @@
   margin-bottom: 1rem;
   letter-spacing: -1px;
 }
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+}
+
 .subtitle {
   font-size: 1.25rem;
   color: #64748b;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .subtitle {
+    font-size: 1rem;
+  }
 }
 
 .story-section {
@@ -146,6 +178,12 @@
 @media (min-width: 800px) {
   .story-section {
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 800px) {
+  .story-section {
+    gap: 3rem;
+    text-align: center; /* Centralizar texto no mobile */
   }
 }
 
@@ -189,6 +227,12 @@
   margin-bottom: 1.5rem;
   font-weight: 700;
 }
+@media (max-width: 768px) {
+  .text-block h2 {
+    font-size: 1.8rem;
+  }
+}
+
 .text-block p {
   color: #475569;
   line-height: 1.8;
