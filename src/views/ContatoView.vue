@@ -9,7 +9,7 @@ const sendMessage = () => {
   if (!name.value || !message.value) return alert('Por favor, preencha seu nome e a mensagem.')
 
   const text = `Olá! Me chamo *${name.value}*.\nAssunto: ${subject.value || 'Contato via Site'}\n\n${message.value}`
-  const link = `https://wa.me/5511999999999?text=${encodeURIComponent(text)}`
+  const link = `https://wa.me/5547994746490?text=${encodeURIComponent(text)}`
 
   window.open(link, '_blank')
 }
@@ -36,28 +36,28 @@ const sendMessage = () => {
               <span class="icon">📍</span>
               <div>
                 <h3>Atelier</h3>
-                <p>São Paulo, SP - Entregas em todo o Brasil</p>
+                <p>Pria do Ervino, 773  - São Francisco do Sul, SC - Entregas em todo o Brasil</p>
               </div>
             </div>
             <div class="item">
               <span class="icon">💌</span>
               <div>
                 <h3>E-mail</h3>
-                <p>contato@artdiju.com.br</p>
+                <p>Sem e-mail por enquanto</p>
               </div>
             </div>
             <div class="item">
               <span class="icon">💬</span>
               <div>
                 <h3>WhatsApp</h3>
-                <p>(11) 99999-9999</p>
+                <p>(47) 99474-6490</p>
               </div>
             </div>
           </div>
 
           <div class="social-row">
-            <a href="#" class="social-link">Instagram</a>
-            <a href="#" class="social-link">Facebook</a>
+            <a href="https://www.instagram.com/artdiju/" class="social-link">Instagram</a>
+            <a href="https://www.facebook.com/share/1DFn8BKtkL/" class="social-link">Facebook</a>
           </div>
         </div>
 

@@ -23,9 +23,9 @@
         </div>
 
         <div class="text-block">
-          <h2>Quem é a Art Di Ju?</h2>
+          <h2>Quem é a ArtDiJu?</h2>
           <p>
-            A Art Di Ju nasceu do desejo genuíno de criar presentes que não fossem apenas objetos,
+            A ArtDiJu nasceu do desejo genuíno de criar presentes que não fossem apenas objetos,
             mas pedaços de afeto. Tudo começou em uma pequena mesa de jantar, entre tintas, madeiras
             e muitos sonhos.
           </p>
@@ -52,7 +52,7 @@
           <div class="value-card">
             <div class="icon-box">✨</div>
             <h3>Exclusividade</h3>
-            <p>Designs autorais que você só encontra aqui na Art Di Ju.</p>
+            <p>Designs autorais que você só encontra aqui na ArtDiJu.</p>
           </div>
           <div class="value-card">
             <div class="icon-box">🌿</div>

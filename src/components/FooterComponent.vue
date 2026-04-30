@@ -20,7 +20,7 @@ import Logo from '@/assets/imagens/logo.png'
 
     <div class="footer-content container">
       <div class="footer-col brand-col">
-        <img :src="Logo" alt="Art Di Ju" class="footer-logo" />
+        <img :src="Logo" alt="ArtDiJu" class="footer-logo" />
         <p>Transformando ideias em arte e presentes únicos para quem você ama.</p>
         <div class="social-links">
           <a href="#" class="social-icon">Instagram</a>
@@ -41,10 +41,9 @@ import Logo from '@/assets/imagens/logo.png'
 
       <div class="footer-col contact-col">
         <h3>Atendimento</h3>
-        <p>📍 São Franscisco do Sul, SC</p>
-        <p>📧 contato@artdiju.com.br</p>
-        <p>📱 (11) 99999-9999</p>
-        <p class="hours">Seg a Sex: 09h às 18h</p>
+        <p>📍 Pria do Ervino. São Franscisco do Sul, SC</p>
+        <p>📱 (47) 99747-6490</p>
+        <p class="hours">Seg a Sab: 09h às 18h</p>
       </div>
     </div>
 
