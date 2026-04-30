@@ -2,7 +2,7 @@
 
 <template>
   <a
-    href="https://wa.me/554794746490"
+    href="https://wa.me/5547997476490"
     target="_blank"
     class="whatsapp-btn"
     aria-label="Fale conosco no WhatsApp"
