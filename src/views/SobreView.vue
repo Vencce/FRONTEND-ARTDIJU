@@ -16,7 +16,7 @@
         <div class="image-stack">
           <div class="img-decoration"></div>
           <img
-            src="https://via.placeholder.com/600x800?text=Atelier+Art+Di+Ju"
+            src="../assets/imagens/loja.jpeg"
             alt="Nosso Atelier"
             class="img-main"
           />
