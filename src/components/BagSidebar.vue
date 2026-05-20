@@ -82,6 +82,8 @@ const formatPrice = (value) => {
             <span>Total Estimado</span>
             <span class="total-value">{{ formatPrice(bag.totalPrice) }}</span>
           </div>
+          
+          <p class="shipping-notice-bag">* Frete não incluso</p>
 
           <a :href="bag.whatsappLink" target="_blank" class="btn-checkout">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
@@ -315,7 +317,7 @@ const formatPrice = (value) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   font-size: 1.1rem;
 }
 
@@ -323,6 +325,15 @@ const formatPrice = (value) => {
   font-weight: 800;
   color: #1e293b;
   font-size: 1.25rem;
+}
+
+.shipping-notice-bag {
+  font-size: 0.8rem;
+  color: #f59e0b;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
 }
 
 .btn-checkout {

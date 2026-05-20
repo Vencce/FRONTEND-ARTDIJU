@@ -69,6 +69,8 @@ const handleAddBag = () => {
               </div>
               <span class="dimensions-pill" v-if="product.dimensions">{{ product.dimensions }}</span>
             </div>
+            
+            <p class="shipping-notice">* Frete não incluso</p>
 
             <div class="description-box">
               <h3>Detalhes</h3>
@@ -106,7 +108,7 @@ const handleAddBag = () => {
   border-radius: 24px; overflow: hidden; position: relative;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  max-height: 90vh; /* Garante que cabe na tela do celular */
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
 }
@@ -134,7 +136,7 @@ const handleAddBag = () => {
 .modal-content { 
   display: grid; 
   grid-template-columns: 1fr; 
-  overflow-y: auto; /* Permite rolar se o conteúdo for grande */
+  overflow-y: auto;
 }
 @media (min-width: 768px) { 
   .modal-content { grid-template-columns: 1.2fr 1fr; overflow-y: hidden; } 
@@ -146,7 +148,7 @@ const handleAddBag = () => {
 .image-container img { max-width: 100%; max-height: 500px; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
 @media (max-width: 768px) {
-  .modal-image-col { padding: 3rem 1rem 1rem; } /* Espaço para o botão fechar */
+  .modal-image-col { padding: 3rem 1rem 1rem; }
   .image-container img { max-height: 300px; }
 }
 
@@ -169,11 +171,13 @@ const handleAddBag = () => {
 .title { font-size: 2.2rem; color: #1e293b; line-height: 1.1; margin: 0; }
 @media (max-width: 768px) { .title { font-size: 1.8rem; } }
 
-.price-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.price-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
 .price-wrapper { color: #1e293b; display: flex; align-items: baseline; gap: 4px; }
 .currency { font-size: 1.2rem; font-weight: 600; }
 .value { font-size: 2rem; font-weight: 800; }
 .dimensions-pill { background: #f8fafc; border: 1px solid #e2e8f0; color: #64748b; padding: 6px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; }
+
+.shipping-notice { font-size: 0.85rem; color: #f59e0b; font-weight: 600; margin-top: 0; margin-bottom: 2rem; }
 
 .description-box { margin-bottom: 2rem; }
 .description-box h3 { font-size: 1rem; color: #334155; margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
