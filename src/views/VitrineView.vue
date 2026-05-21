@@ -92,7 +92,7 @@ const openModal = (product) => {
         class="product-card"
         :class="{ 'sold-out': product.is_sold, 'is-featured': product.is_featured }"
         :style="{ animationDelay: `${index * 0.05}s` }"
-      >
+      >                                                                               
         <div class="image-wrapper" @click="openModal(product)">
           <img
             :src="product.image || 'https://via.placeholder.com/400?text=Sem+Imagem'"
