@@ -87,10 +87,11 @@ const openModal = (product) => {
 
     <section v-else class="container products-grid">
       <div
-        v-for="product in filteredProducts"
+        v-for="(product, index) in filteredProducts"
         :key="product.id"
         class="product-card"
         :class="{ 'sold-out': product.is_sold, 'is-featured': product.is_featured }"
+        :style="{ animationDelay: `${index * 0.05}s` }"
       >
         <div class="image-wrapper" @click="openModal(product)">
           <img
@@ -216,7 +217,7 @@ const openModal = (product) => {
     border-bottom-right-radius: 50% 10%;
   }
   .hero-content h1 {
-    font-size: 2rem; /* Reduzido para mobile */
+    font-size: 2rem;
   }
   .hero-content p {
     font-size: 1rem;
@@ -271,7 +272,7 @@ const openModal = (product) => {
   color: #64748b;
   font-weight: 600;
   transition: all 0.2s;
-  white-space: nowrap; /* Impede quebra de texto */
+  white-space: nowrap;
 }
 .category-pill:hover {
   background: #e2e8f0;
@@ -291,7 +292,6 @@ const openModal = (product) => {
   margin-bottom: 5rem;
 }
 
-/* Ajuste para telas muito pequenas */
 @media (max-width: 400px) {
   .products-grid {
     grid-template-columns: 1fr;
@@ -303,11 +303,25 @@ const openModal = (product) => {
   border: 1px solid #f1f5f9;
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
   display: flex;
   flex-direction: column;
   position: relative;
+  opacity: 0;
+  animation: fadeInCard 0.6s ease-out forwards;
 }
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .product-card.is-featured:not(.sold-out) {
   border: 1px solid #fbbf24;
   box-shadow: 0 4px 15px rgba(251, 191, 36, 0.1);
