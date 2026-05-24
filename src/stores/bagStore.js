@@ -63,7 +63,7 @@ export const useBagStore = defineStore('bag', () => {
     const total = totalPrice.value.toFixed(2).replace('.', ',')
     message += `\n*Total Estimado: R$ ${total}*`
     
-    return `https://wa.me/5511999999999?text=${encodeURIComponent(message)}`
+    return `https://wa.me/5547997476490?text=${encodeURIComponent(message)}`
   })
 
   return { 
