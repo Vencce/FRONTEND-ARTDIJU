@@ -1,8 +1,11 @@
 <script setup>
+import { ref } from 'vue'
+
+const isLoaded = ref(true)
 </script>
 
 <template>
-  <div class="admin-analytics">
+  <div class="admin-analytics" v-if="isLoaded">
     <header class="admin-header">
       <h2>Métricas e Acessos</h2>
     </header>
