@@ -93,7 +93,7 @@ const logout = () => {
 }
 
 .badge {
-  background: #0284c7;
+  background: #E8A2C1;
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
@@ -137,9 +137,9 @@ const logout = () => {
 }
 
 .nav-item.active {
-  background: #0ea5e9;
+  background: #E8A2C1;
   color: white;
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  box-shadow: 0 4px 12px rgba(232, 162, 193, 0.3);
 }
 
 .sidebar-footer {
