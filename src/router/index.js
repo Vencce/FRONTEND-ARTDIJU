@@ -33,14 +33,14 @@ const router = createRouter({
       children: [
         {
           path: '',
-          name: 'admin-produtos',
-          component: () => import('../views/AdminView.vue'),
+          name: 'admin-analytics',
+          component: () => import('../views/AdminAnalytics.vue'),
           meta: { requiresAuth: true }
         },
         {
-          path: 'analytics',
-          name: 'admin-analytics',
-          component: () => import('../views/AdminAnalytics.vue'),
+          path: 'produtos',
+          name: 'admin-produtos',
+          component: () => import('../views/AdminView.vue'),
           meta: { requiresAuth: true }
         }
       ]
