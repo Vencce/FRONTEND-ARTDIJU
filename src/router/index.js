@@ -34,12 +34,14 @@ const router = createRouter({
         {
           path: '',
           name: 'admin-produtos',
-          component: () => import('../views/AdminView.vue')
+          component: () => import('../views/AdminView.vue'),
+          meta: { requiresAuth: true }
         },
         {
           path: 'analytics',
           name: 'admin-analytics',
-          component: () => import('../views/AdminAnalytics.vue')
+          component: () => import('../views/AdminAnalytics.vue'),
+          meta: { requiresAuth: true }
         }
       ]
     },
@@ -53,8 +55,12 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('access_token')
-  if (to.meta.requiresAuth && !token) {
-    next('/login')
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!token) {
+      next('/login')
+    } else {
+      next()
+    }
   } else {
     next()
   }
