@@ -28,9 +28,20 @@ const router = createRouter({
     },
     {
       path: '/admin',
-      name: 'admin',
-      component: () => import('../views/AdminView.vue'),
-      meta: { requiresAuth: true }
+      component: () => import('../views/AdminLayout.vue'),
+      meta: { requiresAuth: true },
+      children: [
+        {
+          path: '',
+          name: 'admin-produtos',
+          component: () => import('../views/AdminView.vue')
+        },
+        {
+          path: 'analytics',
+          name: 'admin-analytics',
+          component: () => import('../views/AdminAnalytics.vue')
+        }
+      ]
     },
     {
       path: '/:pathMatch(.*)*',
