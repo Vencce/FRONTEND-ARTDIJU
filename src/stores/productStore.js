@@ -16,15 +16,44 @@ export const useProductStore = defineStore('products', () => {
     return token ? { 'Authorization': `Bearer ${token}` } : {}
   }
 
+  function saveToCache() {
+    if (products.value && products.value.length > 0) {
+      localStorage.setItem('artdiju_products_cache', JSON.stringify(products.value))
+    }
+  }
+
+  function loadFromCache() {
+    const cached = localStorage.getItem('artdiju_products_cache')
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached)
+        if (parsed && parsed.length > 0) {
+          products.value = parsed
+          return true
+        }
+      } catch (e) {
+        return false
+      }
+    }
+    return false
+  }
+
   async function fetchProducts() {
-    loading.value = true
+    const hasCache = loadFromCache()
+    
+    if (!hasCache) {
+      loading.value = true
+    }
+    
     error.value = null
     try {
       const response = await axios.get(API_URL)
       products.value = response.data
+      saveToCache()
     } catch (err) {
-      console.error(err)
-      error.value = 'Erro ao carregar produtos.'
+      if (!hasCache) {
+        error.value = 'Erro ao carregar produtos.'
+      }
     } finally {
       loading.value = false
     }
@@ -54,9 +83,9 @@ export const useProductStore = defineStore('products', () => {
 
       products.value.unshift(response.data)
       products.value.sort((a, b) => Number(b.is_featured) - Number(a.is_featured))
+      saveToCache()
       toast.addToast('Produto criado com sucesso!', 'success')
     } catch (err) {
-      console.error(err)
       if (err.response && err.response.status === 401) {
         window.location.href = '/login'
       } else {
@@ -91,11 +120,11 @@ export const useProductStore = defineStore('products', () => {
       if (index !== -1) {
         products.value[index] = response.data
         products.value.sort((a, b) => Number(b.is_featured) - Number(a.is_featured))
+        saveToCache()
       }
       
       toast.addToast('Produto atualizado!', 'success')
     } catch (err) {
-      console.error(err)
       if (err.response && err.response.status === 401) {
         window.location.href = '/login'
       } else {
@@ -110,9 +139,9 @@ export const useProductStore = defineStore('products', () => {
         headers: getAuthHeader()
       })
       products.value = products.value.filter((p) => p.id !== id)
+      saveToCache()
       toast.addToast('Produto excluído.', 'info')
     } catch (err) {
-      console.error(err)
       if (err.response && err.response.status === 401) {
         window.location.href = '/login'
       } else {
