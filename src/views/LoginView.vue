@@ -1,45 +1,82 @@
 <script setup>
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/authStore'
 import { useRouter } from 'vue-router'
-
-const auth = useAuthStore()
-const router = useRouter()
+import axios from 'axios'
 
 const username = ref('')
 const password = ref('')
+const errorMessage = ref('')
 const isLoading = ref(false)
+const router = useRouter()
 
-const handleLogin = async () => {
+const login = async () => {
+  if (!username.value || !password.value) {
+    errorMessage.value = 'Preencha todos os campos.'
+    return
+  }
+  
   isLoading.value = true
-  const success = await auth.login(username.value, password.value)
-  isLoading.value = false
-
-  if (success) {
+  errorMessage.value = ''
+  
+  try {
+    const response = await axios.post('https://artdiju-backend.onrender.com/api/token/', {
+      username: username.value,
+      password: password.value
+    })
+    
+    localStorage.setItem('access_token', response.data.access)
+    
+    if (response.data.refresh) {
+      localStorage.setItem('refresh_token', response.data.refresh)
+    }
+    
     router.push('/admin')
+  } catch (error) {
+    errorMessage.value = 'Usuário ou senha inválidos.'
+  } finally {
+    isLoading.value = false
   }
 }
 </script>
 
 <template>
-  <div class="login-page">
+  <div class="login-container">
     <div class="login-card">
-      <h1>Área Restrita</h1>
-      <p>Acesso exclusivo para administradores</p>
+      <div class="login-header">
+        <h1>Art Di Ju</h1>
+        <p>Acesso ao Painel Administrativo</p>
+      </div>
 
-      <form @submit.prevent="handleLogin">
-        <div class="form-group">
-          <label>Usuário</label>
-          <input v-model="username" type="text" placeholder="Seu usuário" required />
+      <form @submit.prevent="login" class="login-form">
+        <div class="input-group">
+          <label for="username">Usuário</label>
+          <input 
+            type="text" 
+            id="username" 
+            v-model="username" 
+            placeholder="Digite seu usuário"
+            required
+          />
         </div>
 
-        <div class="form-group">
-          <label>Senha</label>
-          <input v-model="password" type="password" placeholder="Sua senha" required />
+        <div class="input-group">
+          <label for="password">Senha</label>
+          <input 
+            type="password" 
+            id="password" 
+            v-model="password" 
+            placeholder="Digite sua senha"
+            required
+          />
         </div>
 
-        <button type="submit" class="btn-login" :disabled="isLoading">
-          {{ isLoading ? 'Entrando...' : 'Entrar' }}
+        <div v-if="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <button type="submit" class="login-button" :disabled="isLoading">
+          <span v-if="isLoading">Entrando...</span>
+          <span v-else>Entrar</span>
         </button>
       </form>
     </div>
@@ -47,74 +84,123 @@ const handleLogin = async () => {
 </template>
 
 <style scoped>
-.login-page {
-  height: 80vh;
+.login-container {
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #f8f9fa;
+  justify-content: center;
+  background-color: #f1f5f9;
+  padding: 20px;
 }
 
 .login-card {
   background: white;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+}
+
+.login-header {
   text-align: center;
+  margin-bottom: 30px;
 }
 
-h1 {
-  color: #2c3e50;
-  margin-bottom: 0.5rem;
+.login-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 8px 0;
 }
-p {
-  color: #6c757d;
-  margin-bottom: 2rem;
+
+.login-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
   font-size: 0.9rem;
-}
-
-.form-group {
-  text-align: left;
-  margin-bottom: 1.5rem;
-}
-label {
-  display: block;
-  margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #2c3e50;
-}
-input {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-input:focus {
-  border-color: #5fc9f8;
-  outline: none;
+  color: #334155;
 }
 
-.btn-login {
-  width: 100%;
-  padding: 0.8rem;
-  background-color: #2c3e50;
+.input-group input {
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.input-group input:focus {
+  border-color: #E8A2C1;
+  box-shadow: 0 0 0 3px rgba(232, 162, 193, 0.2);
+  background-color: white;
+}
+
+.input-group input::placeholder {
+  color: #94a3b8;
+}
+
+.error-message {
+  background-color: #fef2f2;
+  color: #ef4444;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: 500;
+  border: 1px solid #fecaca;
+}
+
+.login-button {
+  background-color: #E8A2C1;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 14px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  margin-top: 10px;
 }
 
-.btn-login:hover {
-  background-color: #1a252f;
+.login-button:hover:not(:disabled) {
+  background-color: #d18ba8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 162, 193, 0.4);
 }
-.btn-login:disabled {
-  background-color: #95a5a6;
+
+.login-button:disabled {
+  opacity: 0.7;
   cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+  
+  .login-header h1 {
+    font-size: 1.75rem;
+  }
 }
 </style>
